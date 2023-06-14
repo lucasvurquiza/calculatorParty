@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "calculatorParty",
+    "name": "Calculadora para vendas de festas",
     "slug": "calculatorParty",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,14 +8,15 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#FEF6E6"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "icon": "./assets/icon.png"
     },
     "android": {
       "adaptiveIcon": {

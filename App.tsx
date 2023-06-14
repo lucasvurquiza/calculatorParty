@@ -1,20 +1,25 @@
+import { useFonts } from 'expo-font';
+import { Main } from './src/Main';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 
 export default function App() {
+  const [isFontsLoaded] = useFonts({
+    'Lato-300': require('./src/assets/fonts/Lato-Light.ttf'),
+    'Lato-400': require('./src/assets/fonts/Lato-Regular.ttf'),
+    'Lato-700': require('./src/assets/fonts/Lato-Bold.ttf'),
+  });
+
+  if (!isFontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <Main />
+      <StatusBar style="dark" backgroundColor="#FEF6E6" />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
