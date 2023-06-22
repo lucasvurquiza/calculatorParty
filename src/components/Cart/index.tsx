@@ -21,7 +21,7 @@ interface CartProps {
   cartItems: CartItem[];
   onAdd: (product: Product) => void;
   onDecrement: (product: Product) => void;
-  onConfirmOrder: () => void;
+  onConfirmOrder: (total: number) => void;
 }
 
 export function Cart({ cartItems, onAdd, onDecrement, onConfirmOrder }: CartProps) {
@@ -81,7 +81,7 @@ export function Cart({ cartItems, onAdd, onDecrement, onConfirmOrder }: CartProp
           )}
         </TotalContainer>
         <Button
-          onPress={onConfirmOrder}
+          onPress={() => onConfirmOrder(total)}
           disabled={cartItems.length === 0}
         >
           Concluir pedido

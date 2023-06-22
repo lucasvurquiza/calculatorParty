@@ -13,12 +13,13 @@ import { Menu } from "../components/Menu";
 import { Cart } from "../components/Cart";
 import { Header } from "../components/Header";
 import { categories, objectCategory } from "../utils/staticConsts";
-import { FancyAlert } from "../utils/FancyAlert";
-import { Text } from "../components/Text";
+import { TableModal } from "../components/TableModal";
 
 export function Main() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [menuItems, setMenuItems] = useState<Product[]>([])
+  const [isTableModalVisible, setIsTableModalVisible] = useState(false);
+  const [valueCart, setValueCart] = useState(0);
 
   function handleAddToCart(product: Product) {
     setCartItems((prevState) => {
@@ -70,7 +71,13 @@ export function Main() {
     setMenuItems(objectCategory[categoryId] || [])
   }
 
-  function handleResetOrder() {
+  function handleResetOrder(total: number) {
+    setValueCart(total);
+    setIsTableModalVisible(true);
+  }
+
+  function handlSaveOrder() {
+    setValueCart(0);
     setCartItems([]);
   }
 
@@ -105,13 +112,13 @@ export function Main() {
             />
           </FooterContainer>
         </Footer>}
-        <FancyAlert
-          visible
-          children={
-            <Text>Olá</Text>
-          }
-          onRequestClose={()=> console.log('oii')}
-        />
+
+        <TableModal
+          visible={isTableModalVisible}
+          onClose={() => setIsTableModalVisible(false)}
+          onSave={handlSaveOrder}
+          valueCart={valueCart}
+      />
     </>
   )
 }
