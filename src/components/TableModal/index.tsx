@@ -5,6 +5,7 @@ import { Text } from '../Text';
 import { ModalBody, Overlay, Header, Form, Input, Footer } from './styles';
 import { Platform } from 'react-native';
 import { useState } from 'react';
+import { formatCurrency } from '../../utils/formatCurrency';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -56,7 +57,7 @@ export function TableModal({ visible, onClose, onSave, valueCart }: TableModalPr
               onChangeText={handleChangeInput}
             />
             <Footer>
-              <Text weight='700'>Troco: R$ {orderChange}</Text>
+              <Text weight='700'>Troco: {formatCurrency(orderChange)}</Text>
             </Footer>
             <Button onPress={handleSave}>
               Finalizar
